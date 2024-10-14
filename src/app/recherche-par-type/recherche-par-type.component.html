@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+      <label for="idType">Types</label>
+      <select class="form-control form-control-lg" id="idType" name="idType"
+              [(ngModel)]="idType" (change)="onChange()">
+        <option *ngFor="let type of types" [value]="type.idtype">
+          {{type.nomType}}
+        </option>
+      </select>
+    </div>
+  
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nom</th>
+              <th>Prix</th>
+              <th>Date Création</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let moto of motos">
+              <td>{{moto.idMotot}}</td>
+              <td>{{moto.nomMoto}}</td>
+              <td>{{moto.prixMoto}}</td>
+              <td>{{moto.dateCreation | date:'dd/MM/yyyy'}}</td>
+              <td>{{moto.type.nomType}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>

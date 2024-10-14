@@ -1,0 +1,37 @@
+<div class="container">
+    <form class="form-inline"> 
+        <div class="form-group mx-sm-3 mb-2 mt-2 "> 
+            <label>Nom Moto en tapant</label> 
+            <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control" >
+        </div>
+    </form>
+    
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr> 
+                        <th>Id</th>
+                        <th>Nom</th> 
+                        <th>Prix</th> <!-- Remplacez Rank par Prix -->
+                        <th>Date Création</th>
+                        <th>Type</th> <!-- Remplacez Ligue par Type -->
+                        <th *ngIf="authService.isAdmin()">Supprimer</th>
+                        <th *ngIf="authService.isAdmin()">Modifier</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let moto of allMotos | searchFilter: searchTerm "> <!-- Remplacez Equipe par moto -->
+                    <tr>
+                        <td>{{moto.idMotot}}</td> <!-- Remplacez idEquipe par idMotot -->
+                        <td>{{moto.nomMoto}}</td> <!-- Remplacez nomEquipe par nomMoto -->
+                        <td>{{moto.prixMoto}}</td> <!-- Remplacez rankEquipe par prixMoto -->
+                        <td>{{moto.dateCreation | date:'dd/MM/yyyy'}}</td>
+                        <td>{{moto.type.nomType}}</td> <!-- Remplacez ligue par type -->
+                        <td *ngIf="authService.isAdmin()"><a class="btn btn-danger" (click)="supprimerMoto(moto)">Supprimer</a></td> <!-- Remplacez supprimerEquipe par supprimerMoto -->
+                        <td *ngIf="authService.isAdmin()"><a class="btn btn-success" [routerLink]="['/updateMoto', moto.idMotot]">Modifier</a></td> <!-- Remplacez updateEquipe par updateMoto -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

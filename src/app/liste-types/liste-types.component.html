@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+      <!-- Remplacer app-update-ligue par app-update-type -->
+      <app-update-type 
+        [type]="updatedtype" 
+        [ajout]="ajout" 
+        (typeUpdated)="typeUpdated($event)">
+      </app-update-type>
+    </div>
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nom Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Boucler sur les types au lieu des ligues -->
+            <tr *ngFor="let type of types">
+              <td>{{type.idtype}}</td>
+              <td>{{type.nomType}}</td>
+              <td><a class="btn btn-success" (click)="updatedType(type)">Editer</a></td>
+              <td><a class="btn btn-danger" (click)="supprimerType(type)">Supprimer</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
